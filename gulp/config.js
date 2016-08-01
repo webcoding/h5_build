@@ -24,25 +24,30 @@ var path = options.path;
 
 if( !(app.src || path) ){
   // 不要设定默认路径，避免误操作（或使用配置文件）
+  // 项目名称肯定会有，输出时
   // 颜色 http://onlyzq.blog.51cto.com/1228/546459
   // console.log("\033[41;37m 红底白字 \033[0m")
   console.error('必须指定项目名称或项目路径，--app=xxx or --path=xxx');
 }
 
 export default {
-  name: app.name || '',
+  name: app.name || 'app',
   src: app.src || (path + src),
   dist: app.dist || (path + dist),
+
+  quoteSrc: 'index.html', //或者 ['index.html']
+  styleEnter: 'main.scss',
+  jsEnter: 'main.js',
+
   components: src + '/components',
   pages: src + '/pages',
   modules: src + '/modules',
 
-  assets: {
-    fonts: 'assets/fonts',
-    images: 'assets/images',
-    styles: 'assets/styles',
-    scripts: 'assets/scripts',
-  },
+  prefix: 'assets',
+  fonts: '/fonts',
+  images: '/images',
+  styles: '/styles',
+  scripts: '/scripts',
 
   revision,
   tasks: argv,
